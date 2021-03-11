@@ -1,0 +1,16 @@
+/* Styles for AFARA */
+
+/* Dependencies */
+@import "components/_colors";
+@import "components/_typography";
+@import "components/_utils";
+
+/* Sections */
+@import "components/header";
+@import "components/footer";
+
+/* Pages */
+@import "pages/front-page";
+@import "pages/inside-pages";
+
+@import "pages/responsive";

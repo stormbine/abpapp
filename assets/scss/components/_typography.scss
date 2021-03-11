@@ -1,0 +1,63 @@
+
+/* ------------------------ Sass Variables ------------------------ */
+$copyFont: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headingFont: Verdana, Geneva, sans-serif;
+$lightFont: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+* { font-family: $copyFont; }
+
+/* ------------------------ Headings ------------------------ */
+.h1, h1 { 
+    font-size: 65px;
+    font-weight: 700;
+    font-family: $headingFont;
+    color: $heading-color;
+    line-height: 1.4;
+    margin: 30px 0;
+    
+}
+
+.h2, h2 {
+    font-size: 35px;
+    font-weight: 700;
+    font-family: $headingFont;
+    color: $heading-color;
+    line-height: 1.4;
+    margin: 25px 0;
+}
+
+.h3, h3 {
+    font-size: 25px;
+    font-weight: 700;
+    font-family: $headingFont;
+    color: $heading-color;
+    line-height: 1.4;
+    margin: 20px 0;
+}
+
+.h4, h4 { 
+    font-size: 20px;
+    font-weight: 700;
+    font-family: $headingFont;
+    color: $heading-color;
+    line-height: 1.4;
+    margin: 10px 0;
+}
+
+/* ------------------------ Copy ------------------------ */
+p { 
+    font-size: 16px;
+    font-weight: 400;
+    color: $copy-color;
+    line-height: 1.4;
+}
+li, ol { 
+    font-size: 16px;
+    font-weight: 400;
+    color: $copy-color;
+    line-height: 1.4;
+}
+
+a { color: $link-color;
+    &:hover { color: $link-color; text-decoration: underline; }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Alberta Beef Producers - For the more than 18,000 beef cattle producers who are stewards of the industry in this province, one organization represents their collective interests — the Alberta Beef Producers (ABP).</title>
+
+		<link rel="icon" href="https://abpdaily.com/favicon.ico" type="image/x-icon" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">	
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/main.css">
+
+        <script src="/assets/js/vue.js"></script>
+        <script src="/assets/js/vue-router.js"></script>
+        <script src="/assets/js/axios.min.js"></script>
+    </head>
+
+    <body>
+        <div id="main_app" class="page-wrap">
+            <header>
+                <div class="header-logo">
+                    <router-link class="page-logo" to="/"><img src="/assets/img/abp-logo-lg.svg" class="img-fluid" /></router-link>
+                </div>
+
+                <div class="header-toggles">
+                    <a href="#" class="search-link"><i class="fas fa-search"></i></a>
+                </div>
+            </header>
+
+            <div id="menu-launcher" class="navbtn" @click="toggleNav()" v-bind:class="[ navOpen === 1 ? 'open' : '' ]">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div id="popup-menu" class="mobile-nav" v-bind:class="[ navOpen === 1 ? 'open' : '' ]">
+				<div class="inside">
+                    <ul class="main-nav">
+                        <li><router-link class="nav-link" to="/cattleReport" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]" @click.native = "toggleNav()">Cattle Report</router-link></li>
+                        <li><router-link class="nav-link" to="/news" v-bind:class="[ currentRouteName === 'news' ? 'active' : '' ]" @click.native = "toggleNav()">What's New</router-link></li>
+                        <li><div class="dd-parent nav-link" @click="toggleCats()" v-bind:class="[ catOpen === 1 ? 'active' : '' ]">Categories</div>
+                            <ul class="sub-nav" v-bind:class="[ catOpen === 1 ? 'open' : '' ]">
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'business-tools' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'business-tools' ? 'active' : '' ]" @click.native = "toggleNav()">Business Tools</router-link></li>
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'checking-in-with-abp' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'checking-in-with-abp' ? 'active' : '' ]" @click.native = "toggleNav()">Checking in with ABP</router-link></li>
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'current-markets-forecasts' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'current-markets-forecasts' ? 'active' : '' ]" @click.native = "toggleNav()">Current Markets & Forcasts</router-link></li>
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'innovation-technology' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'innovation-technology' ? 'active' : '' ]" @click.native = "toggleNav()">Innovation & Technology</router-link></li>
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'inspiration' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'inspiration' ? 'active' : '' ]" @click.native = "toggleNav()">Inspiration</router-link></li>
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'issues-insights-influence' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'issues-insights-influence' ? 'active' : '' ]" @click.native = "toggleNav()">Issues & Insights</router-link></li>
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'trail-blazers' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'trail-blazers' ? 'active' : '' ]" @click.native = "toggleNav()">Trailblazers</router-link></li>
+                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'weather' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'weather' ? 'active' : '' ]" @click.native = "toggleNav()">Weather</router-link></li>
+                            </ul>
+                        </li>
+                        <li><router-link class="nav-link" to="/about" v-bind:class="[ currentRouteName === 'about' ? 'active' : '' ]" @click.native = "toggleNav()">About</router-link></li>
+                        <li><router-link class="nav-link" to="/events" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]" @click.native = "toggleNav()">Events</router-link></li>
+                        <li><router-link class="nav-link" to="/contact" v-bind:class="[ currentRouteName === 'contact' ? 'active' : '' ]" @click.native = "toggleNav()">Contact</router-link></li>
+                    </ul>
+                </div>
+
+                <div class="social-media">
+                    Follow Us On
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/AlbertaBeefProducers" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/albertabeef" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/alberta-beef-producers/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+			</div>
+        
+            <div class="theme-content">
+                <router-view></router-view>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+        <script src="/assets/js/bootstrap.min.js"></script>
+
+        <!-- Vue Pages -->
+        <script src="/pages/home.vue.js"></script>
+        <script src="/pages/cattleReport.vue.js"></script>
+        <script src="/pages/news.vue.js"></script>
+        <script src="/pages/category.vue.js"></script>
+        <script src="/pages/about.vue.js"></script>
+        <script src="/pages/events.vue.js"></script>
+        <script src="/pages/contact.vue.js"></script>
+        
+        <script src="/assets/js/main.js"></script>
+    </body>
+</html>
