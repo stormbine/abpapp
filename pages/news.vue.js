@@ -6,7 +6,7 @@ var News = {
                 <div class="row">
                     <div class="col-12">
                         <div class="blog-feat-img">
-                            <router-link :to="{ name: 'single', params: { postName: newsPosts.slug }}"><img :src="newsPosts._embedded['wp:featuredmedia'][0].source_url" class="img-fluid" /></router-link>
+                            <router-link :to="{ name: 'single', params: { postName: newsPosts.slug }}"><img v-if="newsPosts._embedded['wp:featuredmedia']" :src="newsPosts._embedded['wp:featuredmedia'][0].source_url" class="img-fluid" /></router-link>
                         </div>
                         <div class="blog-info">
                             <span class="date-text" v-html="newsPosts.formatted_date"></span>

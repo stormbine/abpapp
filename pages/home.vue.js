@@ -72,7 +72,7 @@ var Home = {
                 <div class="row">
                     <div class="col-12">
                         <div class="blog-feat-img">
-                            <router-link :to="{ name: 'single', params: { postName: newsPosts.slug }}"><img :src="newsPosts._embedded['wp:featuredmedia'][0].source_url" class="img-fluid" /></router-link>
+                            <router-link :to="{ name: 'single', params: { postName: newsPosts.slug }}"><img v-if="newsPosts._embedded['wp:featuredmedia']" :src="newsPosts._embedded['wp:featuredmedia'][0].source_url" class="img-fluid" /></router-link>
                         </div>
                         <div class="blog-info">
                             <span class="date-text" v-html="newsPosts.formatted_date"></span>
@@ -104,8 +104,10 @@ var Home = {
     mounted: function() {
         axios
             .get(this.$apiUrl + 'wp-json/wp/v2/posts?per_page=5&_embed')
-            .then(response => {
-                this.latestPosts = response.data
+            .then(lposts => {
+                this.latestPosts = lposts.data
+
+                console.log(lposts.data)
             }
         )
         
