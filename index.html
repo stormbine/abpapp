@@ -16,6 +16,7 @@
         <script src="/assets/js/vue.js"></script>
         <script src="/assets/js/vue-router.js"></script>
         <script src="/assets/js/axios.min.js"></script>
+        <script src="/assets/js/vue-scrollto.js"></script>
     </head>
 
     <body>
@@ -25,9 +26,9 @@
                     <router-link class="page-logo" to="/"><img src="/assets/img/abp-logo-lg.svg" class="img-fluid" /></router-link>
                 </div>
 
-                <div class="header-toggles">
+                <!--<div class="header-toggles">
                     <a href="#" class="search-link"><i class="fas fa-search"></i></a>
-                </div>
+                </div> -->
             </header>
 
             <div id="menu-launcher" class="navbtn" @click="toggleNav()" v-bind:class="[ navOpen === 1 ? 'open' : '' ]">
@@ -55,7 +56,13 @@
                         </li>
                         <li><router-link class="nav-link" to="/about" v-bind:class="[ currentRouteName === 'about' ? 'active' : '' ]" @click.native = "toggleNav()">About</router-link></li>
                         <li><router-link class="nav-link" to="/events" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]" @click.native = "toggleNav()">Events</router-link></li>
-                        <li><router-link class="nav-link" to="/contact" v-bind:class="[ currentRouteName === 'contact' ? 'active' : '' ]" @click.native = "toggleNav()">Contact</router-link></li>
+                        <li><div class="dd-parent nav-link" @click="toggleContact()" v-bind:class="[ contactOpen === 1 ? 'active' : '' ]">Contact</div>
+                            <ul class="sub-nav" v-bind:class="[ contactOpen === 1 ? 'open' : '' ]">
+                                <li><router-link class="nav-link" to="/contact" v-bind:class="[ currentRouteName === 'contact-us' ? 'active' : '' ]" @click.native = "toggleNav()">Contact Us</router-link></li>
+                                <li><router-link class="nav-link" to="/staff" v-bind:class="[ currentRouteName === 'staff' ? 'active' : '' ]" @click.native = "toggleNav()">Staff</router-link></li>
+                                <li><router-link class="nav-link" to="/delegates" v-bind:class="[ currentRouteName === 'delegates' ? 'active' : '' ]" @click.native = "toggleNav()">Delegates</router-link></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 
@@ -71,7 +78,70 @@
         
             <div class="theme-content">
                 <router-view></router-view>
+
+                <section class="bottom-cta">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="https://abpdaily.com" target="_blank"><img src="/assets/img/abp-digitalad_stew.gif" class="img-fluid" style="width: 100%; height: auto;"></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
+
+            <footer id="footer_wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <router-link to="/"><img src="/assets/img/producers-logo.svg" class="img-fluid"  style="max-height: 70px;" /></router-link>
+
+                            <h4>Follow us on</h4>
+                            <div class="social-icons">
+                                <a href="https://www.facebook.com/AlbertaBeefProducers" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <a href="https://twitter.com/albertabeef" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/company/alberta-beef-producers/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <ul class="main-nav">
+                                <li><router-link class="nav-link" to="/cattleReport" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]">Cattle Report</router-link></li>
+                                <li><router-link class="nav-link" to="/news" v-bind:class="[ currentRouteName === 'news' ? 'active' : '' ]">What's New</router-link></li>
+                                <li><div class="dd-parent nav-link">Categories</div>
+                                    <ul class="sub-nav">
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'business-tools' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'business-tools' ? 'active' : '' ]">Business Tools</router-link></li>
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'checking-in-with-abp' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'checking-in-with-abp' ? 'active' : '' ]">Checking in with ABP</router-link></li>
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'current-markets-forecasts' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'current-markets-forecasts' ? 'active' : '' ]">Current Markets & Forcasts</router-link></li>
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'innovation-technology' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'innovation-technology' ? 'active' : '' ]">Innovation & Technology</router-link></li>
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'inspiration' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'inspiration' ? 'active' : '' ]">Inspiration</router-link></li>
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'issues-insights-influence' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'issues-insights-influence' ? 'active' : '' ]">Issues & Insights</router-link></li>
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'trail-blazers' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'trail-blazers' ? 'active' : '' ]">Trailblazers</router-link></li>
+                                        <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'weather' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'weather' ? 'active' : '' ]">Weather</router-link></li>
+                                    </ul>
+                                </li>
+                                <li><router-link class="nav-link" to="/about" v-bind:class="[ currentRouteName === 'about' ? 'active' : '' ]">About</router-link></li>
+                                <li><router-link class="nav-link" to="/events" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]">Events</router-link></li>
+                                <li><div class="dd-parent nav-link" @click="toggleContact()">Contact</div>
+                                    <ul>
+                                        <li><router-link class="nav-link" to="/contact" v-bind:class="[ currentRouteName === 'contact-us' ? 'active' : '' ]">Contact Us</router-link></li>
+                                        <li><router-link class="nav-link" to="/staff" v-bind:class="[ currentRouteName === 'staff' ? 'active' : '' ]">Staff</router-link></li>
+                                        <li><router-link class="nav-link" to="/delegates" v-bind:class="[ currentRouteName === 'delegates' ? 'active' : '' ]">Delegates</router-link></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-bar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                &copy; {{ currentYear }} ABP Daily.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -87,6 +157,9 @@
         <script src="/pages/about.vue.js"></script>
         <script src="/pages/events.vue.js"></script>
         <script src="/pages/contact.vue.js"></script>
+        <script src="/pages/staff.vue.js"></script>
+        <script src="/pages/delegates.vue.js"></script>
+        <script src="/pages/singlePost.vue.js"></script>
         
         <script src="/assets/js/main.js"></script>
     </body>

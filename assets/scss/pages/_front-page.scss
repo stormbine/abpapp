@@ -1,1 +1,189 @@
 .theme-content { margin: 15px 0; }
+
+.featured-cta, .bottom-cta { padding: 30px 0; }
+
+.blog-post {
+    padding: 50px 0;
+    border-bottom: 3px solid $grey;
+
+    h2, h2 a {
+        font-size: 30px;
+        line-height: 1.2;
+        margin: 15px 0;
+        color: $black;
+        position: relative;
+        padding: 20px 0 0 0;
+
+        &:hover {
+            color: $red;
+            text-decoration: none;
+        }
+
+        &:before {
+            position: absolute;
+            content: "";
+            width: 90px;
+            height: 8px;
+            top: 0;
+            left: 0;
+            background: $green;
+        }
+    }
+
+    .blog-info {
+        text-transform: uppercase;
+        $color: $red;
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 0 0 8px 0;
+        letter-spacing: 1px;
+        font-family: $lightFont;
+
+        .date-text {
+            color: $red;
+            display: block;
+        }
+
+        .blog-cats { 
+            color: $brown;
+            display: block;
+        }
+    }
+    
+    .blog-feat-img {
+        border-bottom: 6px solid $black;
+        position: relative;
+        margin-bottom: 50px;
+        
+        a { display: block; margin-bottom: -1px; }
+
+        &:after {
+            position: absolute;
+            bottom: -34px;
+            right: 0;
+            height: 28px;
+            width: 284px;
+            background: $green;
+            content: "";
+        }
+    }
+
+    &.innovation-technology {
+        h2, h2 a {
+            &:before { background: $blue; }
+        }
+
+        .blog-feat-img:after { background: $blue; }
+        .blog-info .blog-cats { color: $blue; }
+    }
+    &.business-tools {
+        h2, h2 a {
+            &:before { background: $brown; }
+        }
+
+        .blog-feat-img:after { background: $brown; }
+        .blog-info .blog-cats { color: $brown; }
+    }
+    &.current-markets-forecasts {
+        h2, h2 a {
+            &:before { background: $yellow; }
+        }
+
+        .blog-feat-img:after { background: $yellow; }
+        .blog-info .blog-cats { color: $yellow; }
+    }
+    &.inspiration {
+        h2, h2 a {
+            &:before { background: $new-yellow; }
+        }
+
+        .blog-feat-img:after { background: $new-yellow; }
+        .blog-info .blog-cats { color: $new-yellow; }
+    }
+    &.issues-insights-influence {
+        h2, h2 a {
+            &:before { background: $grey; }
+        }
+
+        .blog-feat-img:after { background: $grey; }
+        .blog-info .blog-cats { color: $grey; }
+    }
+    &.trail-blazers {
+        h2, h2 a {
+            &:before { background: $green; }
+        }
+
+        .blog-feat-img:after { background: $green; }
+        .blog-info .blog-cats { color: $green; }
+    }
+    &.weather {
+        h2, h2 a {
+            &:before { background: $secondary-red; }
+        }
+
+        .blog-feat-img:after { background: $secondary-red; }
+        .blog-info .blog-cats { color: $secondary-red; }
+    }
+}
+
+.latest-posts .blog-post:last-child { border-bottom: 0; }
+
+.all-posts-btn {
+    a.btn { display: block; text-align: center; }
+}
+
+.report-home {
+    padding: 15px;
+    background: #f7f7f7;
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+
+    h3 {
+        margin: 0 0 1px 0;
+        font-size: 18px;
+    }
+
+    .updated {
+        font-size: 13px;
+        font-style: italic;
+        color: lighten($grey, 20%);
+        margin-bottom: 10px;
+    }
+
+    h4 {
+        font-size: 15px;
+        margin: 0 0 5px 0;
+        font-weight: 600;
+        font-family: $copyFont;
+        color: $grey;
+    }
+
+    p { 
+        line-height: 1.4;
+        font-size: 13px;
+    }
+
+    .report-row {
+        display: flex;
+        flex-wrap: wrap;
+
+        .report-col {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding: 0 10px;
+
+            &.full {
+                flex: 0 0 100%;
+                max-width: 100%; 
+            }
+
+            &:first-child { padding-left: 0; }
+            &:last-child { padding-right: 0; }
+        }
+    }
+
+    .report-more { 
+        padding-top: 20px;
+        text-align: center;
+    }
+}

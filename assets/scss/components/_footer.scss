@@ -32,15 +32,31 @@ footer {
         color: $offwhite;
     }
 
-    .navbar-nav a {
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 19px;
-        letter-spacing: 0.168px;
-        color: $offwhite;
-        text-transform: uppercase;
+    .main-nav {
+        list-style: none;
+        padding: 20px 0 0;
 
-        &:hover { color: $red; }
+        li { padding: 0; margin: 7px 0; }
+
+        .dd-parent {
+            padding: 0;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 19px;
+            color: $offwhite;
+            text-transform: uppercase;
+        }
+
+        a.nav-link {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 19px;
+            color: $offwhite;
+            text-transform: uppercase;
+            padding: 0;
+
+            &:hover { color: $red; }
+        }
     }
 
     .social-icons a { 

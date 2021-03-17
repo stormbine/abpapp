@@ -1,17 +1,22 @@
+Vue.prototype.$apiUrl = 'https://abpdaily.com/'
+
 var routes = [
     { path: '/', component: Home, name: "home" },
     { path: '/cattleReport', component: CattleReport, name: "cattleReport" },
-    { path: '/news', component: News, name: "news" },
-    { path: '/category/:catName', component: Category, name: "category" },
+    { path: '/news/:pageNum?', component: News, name: "news" },
+    { path: '/category/:catName/:pageNum?', component: Category, name: "category" },
     { path: '/about', component: About, name: "about" },
     { path: '/events', component: Events, name: "events" },
-    { path: '/contact', component: Contact, name: "contact" }
+    { path: '/contact', component: Contact, name: "contact" },
+    { path: '/delegates', component: Delegates, name: "delegates" },
+    { path: '/staff', component: Staff, name: "staff" },
+    { path: '/single/:postName', component: Single, name: "single" },
 ];
   
 var router = new VueRouter({
     routes: routes,
     mode: 'history',
-    base: '/'
+    base: '/',
 });
   
 var app = new Vue({
@@ -23,6 +28,8 @@ var app = new Vue({
         weatherCity: "Calgary",
         navOpen: 0,
         catOpen: 0,
+        contactOpen: 0,
+        currentYear: new Date().getFullYear(),
     },
     methods: {
         toggleNav: function()
@@ -45,6 +52,17 @@ var app = new Vue({
             else
             {
                 this.catOpen = 0
+            }
+        },
+        toggleContact: function()
+        {
+            if(this.contactOpen == 0)
+            {
+                this.contactOpen = 1
+            }
+            else
+            {
+                this.contactOpen = 0
             }
         }
     }, 
