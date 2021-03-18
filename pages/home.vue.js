@@ -61,7 +61,7 @@ var Home = {
         <section class="featured-cta">
             <div class="row">
                 <div class="col-12">
-                    <a href="https://coop.ufa.com/resources/animals/calving-resources?utm_source=ABP-Paid&amp;utm_medium=Display&amp;utm_campaign=ABPMag" target="_blank"><img src="/assets/img/ufa-livestock.jpg" class="img-fluid"></a>
+                    <a href="https://coop.ufa.com/resources/animals/calving-resources?utm_source=ABP-Paid&amp;utm_medium=Display&amp;utm_campaign=ABPMag" target="_blank"><img src="assets/img/ufa-livestock.jpg" class="img-fluid"></a>
                 </div>
             </div>
         </section>

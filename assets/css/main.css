@@ -951,6 +951,9 @@ footer {
     text-align: center;
     font-size: 12px;
     font-style: italic; }
+  .blog-post-single .wp-block-image img {
+    max-width: 100%;
+    height: auto; }
   .blog-post-single .blog-feat-img {
     border-bottom: 6px solid #231f20;
     position: relative;
