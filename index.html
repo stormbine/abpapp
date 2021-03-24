@@ -9,9 +9,9 @@
         
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/main.css">
-        <link  rel="stylesheet" href="assets\lib\fontawesome-free-5.15.2-web/css/all.css">
+        <link  rel="stylesheet" href="assets/lib/fontawesome-free-5.15.2-web/css/all.css">
 
-        <script src="assets/js/vue.js"></script>
+        <script src="assets/js/vue.min.js"></script>
         <script src="assets/js/vue-router.js"></script>
         <script src="assets/js/axios.min.js"></script>
         <script src="assets/js/vue-scrollto.js"></script>
@@ -20,19 +20,28 @@
     <body>
         <div id="main_app" class="page-wrap">
             <header>
-                <div class="header-logo">
-                    <router-link class="page-logo" to="/"><img src="assets/img/abp-logo-lg.svg" class="img-fluid" /></router-link>
-                </div>
-
-                <!--<div class="header-toggles">
-                    <a href="#" class="search-link"><i class="fas fa-search"></i></a>
-                </div> -->
+                <router-link class="page-logo" to="/"><img src="assets/img/abp-logo-lg.svg" class="img-fluid" /></router-link>
             </header>
 
-            <div id="menu-launcher" class="navbtn" @click="toggleNav()" v-bind:class="[ navOpen === 1 ? 'open' : '' ]">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="app-nav">
+                <div class="item">
+                    <router-link to="/" v-bind:class="[ currentRouteName === 'home' ? 'active' : '' ]">
+                        <i class="fas fa-home"></i><br />
+                        Home
+                    </router-link>
+                </div>
+                <div class="item">
+                    <router-link to="/cattleReport" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]">
+                        <i class="fas fa-chart-line"></i><br />
+                        Cattle Report
+                    </router-link>
+                </div>
+                <div class="item">
+                    <router-link to="/events" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]">
+                        <i class="fas fa-calendar-alt"></i><br />
+                        Events
+                    </router-link>
+                </div>
             </div>
 
             <div id="popup-menu" class="mobile-nav" v-bind:class="[ navOpen === 1 ? 'open' : '' ]">

@@ -351,28 +351,32 @@ input, textarea {
 #main_app {
   position: relative;
   margin: 0 auto;
-  padding-top: 70px; }
+  padding-bottom: 70px; }
+
+body, header {
+  padding-top: constant(safe-area-inset-top);
+  /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top);
+  /* iOS 11.2 */ }
+
+#menu-launcher, .page-logo {
+  margin-top: constant(safe-area-inset-top);
+  /* iOS 11.0 */
+  margin-top: env(safe-area-inset-top);
+  /* iOS 11.2 */ }
 
 header {
-  position: fixed;
-  display: flex;
-  align-items: center;
+  position: relative;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 999;
   background: #ffffff;
-  padding: 25px 15px; }
+  padding: 15px;
+  text-align: center; }
   header .page-logo img {
-    max-height: 40px; }
-  header .search-link {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    color: #7a1600;
-    margin-right: 85px;
-    font-size: 25px; }
+    max-height: 35px;
+    margin-top: 30px; }
 
 .navbtn {
   width: 40px;
@@ -499,6 +503,36 @@ header {
         font-size: 25px;
         color: #7a1600;
         margin-right: 12px; }
+
+.app-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: #ffffff;
+  border-top: 1px solid #bab9b9;
+  display: flex;
+  padding: 10px 0;
+  box-shadow: 0px 0 5px rgba(88, 88, 88, 0.7); }
+  .app-nav .item {
+    flex: 0 0 33.333333%;
+    max-width: 33.3333%;
+    border-right: 1px solid #dcdcdc;
+    text-align: center; }
+    .app-nav .item:last-child {
+      border-right: 0; }
+    .app-nav .item a {
+      font-size: 11px;
+      padding: 5px;
+      display: block;
+      width: 100%; }
+      .app-nav .item a:hover {
+        text-decoration: none; }
+      .app-nav .item a.active {
+        color: #7a1600; }
+      .app-nav .item a i {
+        font-size: 24px; }
 
 footer {
   padding: 40px 0 0 0;

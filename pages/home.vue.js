@@ -106,8 +106,6 @@ var Home = {
             .get(this.$apiUrl + 'wp-json/wp/v2/posts?per_page=5&_embed')
             .then(lposts => {
                 this.latestPosts = lposts.data
-
-                console.log(lposts.data)
             }
         )
         
