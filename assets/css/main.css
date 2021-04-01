@@ -353,16 +353,10 @@ input, textarea {
   margin: 0 auto;
   padding-bottom: 70px; }
 
-body, header {
+header .app-top-bar {
   padding-top: constant(safe-area-inset-top);
   /* iOS 11.0 */
   padding-top: env(safe-area-inset-top);
-  /* iOS 11.2 */ }
-
-#menu-launcher, .page-logo {
-  margin-top: constant(safe-area-inset-top);
-  /* iOS 11.0 */
-  margin-top: env(safe-area-inset-top);
   /* iOS 11.2 */ }
 
 header {
@@ -379,8 +373,12 @@ header {
   header .app-top-bar {
     background: #f2f2f2;
     border-bottom: 1px solid #d9d9d9;
-    padding: 40px 15px 8px 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 8px;
     text-align: left; }
+    header .app-top-bar .inside {
+      padding-top: 8px; }
 
 .navbtn {
   width: 40px;
