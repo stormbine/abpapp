@@ -370,15 +370,11 @@ header {
   header .page-logo img {
     max-height: 35px;
     margin-top: 30px; }
-  header .app-top-bar {
+  header .app-top-bar .inside {
+    padding: 8px 15px;
     background: #f2f2f2;
     border-bottom: 1px solid #d9d9d9;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 8px;
     text-align: left; }
-    header .app-top-bar .inside {
-      padding-top: 8px; }
 
 .navbtn {
   width: 40px;

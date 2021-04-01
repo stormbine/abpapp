@@ -20,8 +20,8 @@
     <body>
         <div id="main_app" class="page-wrap">
             <header>
-                <div class="app-top-bar" v-if="currentRouteName === 'category' || currentRouteName === 'single'">
-                    <div class="inside">
+                <div class="app-top-bar">
+                    <div class="inside" v-if="currentRouteName === 'category' || currentRouteName === 'single'">
                         <a @click="$router.go(-1)" class="back-btn"><i class="fas fa-chevron-left"></i></a>
                     </div>
                 </div>

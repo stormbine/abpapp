@@ -21,14 +21,12 @@ header {
     .page-logo img { max-height: 35px; margin-top: 30px; }
 
     .app-top-bar {
-        background: rgb(242, 242, 242);
-        border-bottom: 1px solid darken(rgb(242, 242, 242), 10%);
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-bottom: 8px;
-        text-align: left;
-
-        .inside { padding-top: 8px; }
+        .inside { 
+            padding: 8px 15px; 
+            background: rgb(242, 242, 242);
+            border-bottom: 1px solid darken(rgb(242, 242, 242), 10%);
+            text-align: left;
+        }
     }
 }
 
