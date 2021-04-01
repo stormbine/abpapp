@@ -372,11 +372,15 @@ header {
   left: 0;
   z-index: 999;
   background: #ffffff;
-  padding: 15px;
   text-align: center; }
   header .page-logo img {
     max-height: 35px;
     margin-top: 30px; }
+  header .app-top-bar {
+    background: #f2f2f2;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 40px 15px 8px 15px;
+    text-align: left; }
 
 .navbtn {
   width: 40px;
@@ -711,6 +715,9 @@ footer {
 
 .latest-posts .blog-post:last-child {
   border-bottom: 0; }
+
+.latest-posts h1 {
+  text-align: center; }
 
 .all-posts-btn a.btn {
   display: block;

@@ -21,10 +21,16 @@ header {
     left: 0;
     z-index: 999;
     background: #ffffff;
-    padding: 15px;
     text-align: center;
 
     .page-logo img { max-height: 35px; margin-top: 30px; }
+
+    .app-top-bar {
+        background: rgb(242, 242, 242);
+        border-bottom: 1px solid darken(rgb(242, 242, 242), 10%);
+        padding: 40px 15px 8px 15px;
+        text-align: left;
+    }
 }
 
 .navbtn { 
