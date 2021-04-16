@@ -1,23 +1,29 @@
 var Single = {
 	template: `
-    <div class="container" v-if="postData != ''">
-        <section class="blog-post-wrap">
-            <div class="blog-post-single" :class="postData._embedded['wp:term'][0][0].slug">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="blog-feat-img"><img v-if="postData._embedded['wp:featuredmedia']" :src="postData._embedded['wp:featuredmedia'][0].source_url" class="img-fluid" /></div>
-                        <div class="blog-info">
-                            <span class="date-text" v-html="postData.formatted_date"></span>
-                            <span class="blog-cats" v-html="postData._embedded['wp:term'][0][0].name"></span>
+    <div class="content-wrap" v-if="postData != ''">
+        <div class="container">
+            <section class="blog-post-wrap">
+                <div class="blog-post-single" :class="postData._embedded['wp:term'][0][0].slug">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="blog-feat-img"><img v-if="postData._embedded['wp:featuredmedia']" :src="postData._embedded['wp:featuredmedia'][0].source_url" class="img-fluid" /></div>
+                            <div class="blog-info">
+                                <span class="date-text" v-html="postData.formatted_date"></span>
+                                <span class="blog-cats" v-html="postData._embedded['wp:term'][0][0].name"></span>
+                            </div>
+                            <h2 v-html="postData.title.rendered"></h2> 
+                            <div v-html="postData.content.rendered"></div>
                         </div>
-                        <h2 v-html="postData.title.rendered"></h2> 
-                        <div v-html="postData.content.rendered"></div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </section>
-</div>
+            </section>
+        </div>
+    </div>
+    <div class="contentLoader" v-else>
+        <div>
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="loading-text">Loading...</div>
+        </div>
     </div>
     `,
     data() {

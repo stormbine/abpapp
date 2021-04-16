@@ -1,11 +1,19 @@
 var About = {
 	template: `
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-7 col-lg-8">
-                <div class="page-feat-img"><img :src="pageData.featured_image" class="img-fluid" /></div>
-                <div v-html="pageData.post_content"></div>
+    <div class="content-wrap" v-if="postData != ''">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-7 col-lg-8">
+                    <div class="page-feat-img"><img :src="pageData.featured_image" class="img-fluid" /></div>
+                    <div v-html="pageData.post_content"></div>
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="contentLoader" v-else>
+        <div>
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="loading-text">Loading...</div>
         </div>
     </div>
     `,

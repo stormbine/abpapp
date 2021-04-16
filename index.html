@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <link  rel="stylesheet" href="assets/lib/fontawesome-free-5.15.2-web/css/all.css">
 
-        <script src="assets/js/vue.min.js"></script>
+        <script src="assets/js/vue.js"></script>
         <script src="assets/js/vue-router.js"></script>
         <script src="assets/js/axios.min.js"></script>
         <script src="assets/js/vue-scrollto.js"></script>
@@ -19,13 +19,13 @@
 
     <body>
         <div id="main_app" class="page-wrap">
-            <header>
-                <div class="app-top-bar">
-                    <div class="inside" v-if="currentRouteName === 'category' || currentRouteName === 'single'">
-                        <a @click="$router.go(-1)" class="back-btn"><i class="fas fa-chevron-left"></i></a>
-                    </div>
+            <div class="app-top-bar">
+                <div class="inside" v-if="currentRouteName === 'category' || currentRouteName === 'single' || currentRouteName === 'news'">
+                    <a @click="$router.go(-1)" class="back-btn"><i class="fas fa-chevron-left"></i> BACK</a>
                 </div>
+            </div>
 
+            <header>
                 <router-link class="page-logo" to="/"><img src="assets/img/abp-logo-lg.svg" class="img-fluid" /></router-link>
             </header>
 
@@ -49,58 +49,9 @@
                     </router-link>
                 </div>
             </div>
-
-            <div id="popup-menu" class="mobile-nav" v-bind:class="[ navOpen === 1 ? 'open' : '' ]">
-				<div class="inside">
-                    <ul class="main-nav">
-                        <li><router-link class="nav-link" to="/cattleReport" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]" @click.native = "toggleNav()">Cattle Report</router-link></li>
-                        <li><router-link class="nav-link" to="/news" v-bind:class="[ currentRouteName === 'news' ? 'active' : '' ]" @click.native = "toggleNav()">What's New</router-link></li>
-                        <li><div class="dd-parent nav-link" @click="toggleCats()" v-bind:class="[ catOpen === 1 ? 'active' : '' ]">Categories</div>
-                            <ul class="sub-nav" v-bind:class="[ catOpen === 1 ? 'open' : '' ]">
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'business-tools' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'business-tools' ? 'active' : '' ]" @click.native = "toggleNav()">Business Tools</router-link></li>
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'checking-in-with-abp' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'checking-in-with-abp' ? 'active' : '' ]" @click.native = "toggleNav()">Checking in with ABP</router-link></li>
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'current-markets-forecasts' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'current-markets-forecasts' ? 'active' : '' ]" @click.native = "toggleNav()">Current Markets & Forcasts</router-link></li>
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'innovation-technology' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'innovation-technology' ? 'active' : '' ]" @click.native = "toggleNav()">Innovation & Technology</router-link></li>
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'inspiration' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'inspiration' ? 'active' : '' ]" @click.native = "toggleNav()">Inspiration</router-link></li>
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'issues-insights-influence' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'issues-insights-influence' ? 'active' : '' ]" @click.native = "toggleNav()">Issues & Insights</router-link></li>
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'trail-blazers' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'trail-blazers' ? 'active' : '' ]" @click.native = "toggleNav()">Trailblazers</router-link></li>
-                                <li><router-link class="nav-link" :to="{ name: 'category', params: { catName: 'weather' }}" v-bind:class="[ currentRouteName === 'category' && currentCategory === 'weather' ? 'active' : '' ]" @click.native = "toggleNav()">Weather</router-link></li>
-                            </ul>
-                        </li>
-                        <li><router-link class="nav-link" to="/about" v-bind:class="[ currentRouteName === 'about' ? 'active' : '' ]" @click.native = "toggleNav()">About</router-link></li>
-                        <li><router-link class="nav-link" to="/events" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]" @click.native = "toggleNav()">Events</router-link></li>
-                        <li><div class="dd-parent nav-link" @click="toggleContact()" v-bind:class="[ contactOpen === 1 ? 'active' : '' ]">Contact</div>
-                            <ul class="sub-nav" v-bind:class="[ contactOpen === 1 ? 'open' : '' ]">
-                                <li><router-link class="nav-link" to="/contact" v-bind:class="[ currentRouteName === 'contact-us' ? 'active' : '' ]" @click.native = "toggleNav()">Contact Us</router-link></li>
-                                <li><router-link class="nav-link" to="/staff" v-bind:class="[ currentRouteName === 'staff' ? 'active' : '' ]" @click.native = "toggleNav()">Staff</router-link></li>
-                                <li><router-link class="nav-link" to="/delegates" v-bind:class="[ currentRouteName === 'delegates' ? 'active' : '' ]" @click.native = "toggleNav()">Delegates</router-link></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="social-media">
-                    Follow Us On
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/AlbertaBeefProducers" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/albertabeef" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/alberta-beef-producers/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-			</div>
         
             <div class="theme-content">
                 <router-view></router-view>
-
-                <section class="bottom-cta">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="https://abpdaily.com" target="_blank"><img src="assets/img/abp-digitalad_stew.gif" class="img-fluid" style="width: 100%; height: auto;"></a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
 
