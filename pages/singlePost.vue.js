@@ -52,7 +52,6 @@ var Single = {
             cp = to.params.postName
         }
 
-        VueScrollTo.scrollTo('#main_app', 500)
         this.getPostData(cp)
         next()
     },
@@ -66,7 +65,6 @@ var Single = {
         }
         
         next(vm => {
-            VueScrollTo.scrollTo('#main_app', 500)
             vm.getPostData(cp);
         })
     },

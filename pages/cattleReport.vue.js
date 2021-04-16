@@ -279,13 +279,11 @@ var CattleReport = {
     beforeRouteUpdate (to, from, next) {
         this.pageData = []
         this.getPostData(12)
-        VueScrollTo.scrollTo('#main_app', 500)
         next()
     },
     beforeRouteEnter (to, from, next)
     {
         next(vm => {
-            VueScrollTo.scrollTo('#main_app', 500)
             vm.getPostData(12);
         })
     },

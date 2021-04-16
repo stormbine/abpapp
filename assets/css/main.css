@@ -629,16 +629,16 @@ header {
     text-align: center; }
     .app-nav .item:last-child {
       border-right: 0; }
-    .app-nav .item a {
+    .app-nav .item a, .app-nav .item .toplink {
       font-size: 11px;
       padding: 5px;
       display: block;
       width: 100%; }
-      .app-nav .item a:hover {
+      .app-nav .item a:hover, .app-nav .item .toplink:hover {
         text-decoration: none; }
-      .app-nav .item a.active {
+      .app-nav .item a.active, .app-nav .item .toplink.active {
         color: #7a1600; }
-      .app-nav .item a i {
+      .app-nav .item a i, .app-nav .item .toplink i {
         font-size: 24px; }
 
 footer {

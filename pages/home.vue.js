@@ -81,10 +81,8 @@ var Home = {
             .get(this.$apiUrl + 'wp-json/abp-app/v1/get-page-ads/sidebar')
             .then(lads => {
                 this.pageAds = lads.data
-                console.log(this.pageAds)
             }
         )
-
 
         VueScrollTo.scrollTo('#main_app', 500)
     }

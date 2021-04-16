@@ -31,22 +31,34 @@
 
             <div class="app-nav">
                 <div class="item">
-                    <router-link to="/" v-bind:class="[ currentRouteName === 'home' ? 'active' : '' ]">
+                    <router-link to="/" v-bind:class="[ currentRouteName === 'home' ? 'active' : '' ]" v-if="currentRouteName != 'home'">
                         <i class="fas fa-home"></i><br />
                         Home
                     </router-link>
+                    <div class="toplink" v-bind:class="[ currentRouteName === 'home' ? 'active' : '' ]" v-else @click="scrollToTop">
+                        <i class="fas fa-home"></i><br />
+                        Home
+                    </div>
                 </div>
                 <div class="item">
-                    <router-link to="/cattleReport" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]">
+                    <router-link to="/cattleReport" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]" v-if="currentRouteName != 'cattleReport'">
                         <i class="fas fa-chart-line"></i><br />
                         Cattle Report
                     </router-link>
+                    <div class="toplink" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]" v-else @click="scrollToTop">
+                        <i class="fas fa-chart-line"></i><br />
+                        Cattle Report
+                    </div>
                 </div>
                 <div class="item">
-                    <router-link to="/events" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]">
+                    <router-link to="/events" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]" v-if="currentRouteName != 'events'">
                         <i class="fas fa-calendar-alt"></i><br />
                         Events
                     </router-link>
+                    <div class="toplink" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]" v-else @click="scrollToTop">
+                        <i class="fas fa-calendar-alt"></i><br />
+                        Events
+                    </div>
                 </div>
             </div>
         

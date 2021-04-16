@@ -89,7 +89,6 @@ var News = {
         }
 
         this.getPostData(cp)
-        VueScrollTo.scrollTo('#main_app', 500)
         next()
     },
     beforeRouteEnter (to, from, next)
@@ -102,7 +101,6 @@ var News = {
         }
         
         next(vm => {
-            VueScrollTo.scrollTo('#main_app', 500)
             vm.getPostData(cp);
         })
     },

@@ -12,10 +12,23 @@ var routes = [
     { path: '/staff', component: Staff, name: "staff" },
     { path: '/single/:postName', component: Single, name: "single" },
 ];
+
+const scrollBehavior = (to, from, savedPosition) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (savedPosition) {
+                resolve(savedPosition);
+            } else {
+                resolve({ x: 0, y: 0 });
+            }
+        }, 800);
+    });
+  };
   
 var router = new VueRouter({
     routes: routes,
     base: '/',
+    scrollBehavior,
 });
   
 var app = new Vue({
@@ -63,7 +76,15 @@ var app = new Vue({
             {
                 this.contactOpen = 0
             }
-        }
+        },
+        scrollToTop: function() {
+            console.log("scroll top")
+            window.scrollTo({
+                top: 0,
+                left: 0, 
+                behavior: 'smooth'
+            });
+       }
     }, 
     computed: {
         currentRouteName() {

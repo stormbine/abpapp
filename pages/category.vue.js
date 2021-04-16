@@ -100,8 +100,6 @@ var Category = {
 
         this.getPostData(this.siteCategories[to.params.catName], cp)
         this.categorySelected = to.params.catName
-
-        VueScrollTo.scrollTo('#main_app', 500)
         next()
     },
     beforeRouteEnter (to, from, next)
@@ -116,8 +114,6 @@ var Category = {
         next(vm => {
             vm.getPostData(vm.siteCategories[to.params.catName], cp);
             vm.categorySelected = to.params.catName
-
-            VueScrollTo.scrollTo('#main_app', 500)
         })
     },
     mounted: function() {
