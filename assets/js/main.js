@@ -78,7 +78,6 @@ var app = new Vue({
             }
         },
         scrollToTop: function() {
-            console.log("scroll top")
             window.scrollTo({
                 top: 0,
                 left: 0, 
