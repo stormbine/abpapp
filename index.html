@@ -32,11 +32,11 @@
             <div class="app-nav">
                 <div class="item">
                     <router-link to="/" v-bind:class="[ currentRouteName === 'home' ? 'active' : '' ]" v-if="currentRouteName != 'home'">
-                        <i class="fas fa-home"></i><br />
+                        <i class="fas fa-newspaper"></i><br />
                         Latest
                     </router-link>
                     <div class="toplink" v-bind:class="[ currentRouteName === 'home' ? 'active' : '' ]" v-else @click="scrollToTop">
-                        <i class="fas fa-home"></i><br />
+                        <i class="fas fa-newspaper"></i><br />
                         Latest
                     </div>
                 </div>
