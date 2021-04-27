@@ -55,14 +55,12 @@ var Delegates = {
     beforeRouteUpdate (to, from, next) {
         this.pageData = []
         this.getPostData(10)
-        VueScrollTo.scrollTo('#main_app', 500)
         next()
     },
     beforeRouteEnter (to, from, next)
     {
         next(vm => {
             vm.getPostData(10);
-            VueScrollTo.scrollTo('#main_app', 500)
         })
     },
     mounted: function() {
