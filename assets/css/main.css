@@ -623,8 +623,8 @@ header {
   padding: 10px 0;
   box-shadow: 0px 0 5px rgba(88, 88, 88, 0.7); }
   .app-nav .item {
-    flex: 0 0 33.333333%;
-    max-width: 33.3333%;
+    flex: 0 0 25%;
+    max-width: 25%;
     border-right: 1px solid #dcdcdc;
     text-align: center; }
     .app-nav .item:last-child {

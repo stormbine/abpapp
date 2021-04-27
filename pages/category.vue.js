@@ -5,7 +5,7 @@ var Category = {
             <div class="category-browse">
                 <div class="form-group">
                     <select name="blog-cats" class="form-control" id="blogCategories" v-model="categorySelected" @change="goToCategory($event)">
-                        <option value="">Categories</option>
+                        <option value="">Latest News</option>
                         <option value="business-tools">Business Tools</option>
                         <option value="checking-in-with-abp">Checking in with ABP</option>
                         <option value="current-markets-forecasts">Current Markets & Forcasts</option>
@@ -86,7 +86,10 @@ var Category = {
             )
         },
         goToCategory: function(event) {
-            app.$router.push('/category/' + event.target.value)
+            if(event.target.value != "")
+                app.$router.push('/category/' + event.target.value)
+            else
+                app.$router.push('/news/')
         }
     },
     beforeRouteUpdate (to, from, next) {

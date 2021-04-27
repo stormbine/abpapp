@@ -3,11 +3,10 @@ var Home = {
     <div class="content-wrap" v-if="latestPosts.length > 0">
         <div class="container"> 
             <section class="latest-posts">
-                <h1>What's New</h1>
                 <div class="category-browse">
                     <div class="form-group">
                         <select name="blog-cats" class="form-control" id="blogCategories" v-model="categorySelected" @change="goToCategory($event)">
-                            <option value="">Categories</option>
+                            <option value="">Latest News</option>
                             <option value="business-tools">Business Tools</option>
                             <option value="checking-in-with-abp">Checking in with ABP</option>
                             <option value="current-markets-forecasts">Current Markets & Forcasts</option>
@@ -19,6 +18,7 @@ var Home = {
                         </select>
                     </div>
                 </div>
+                <h1>What's New</h1>
                 <div v-for="(newsPosts, index) in latestPosts" class="blog-post" :class="newsPosts._embedded['wp:term'][0][0].slug">
                     <section class="featured-cta" v-if="index == 3">
                         <div class="row">
@@ -66,7 +66,10 @@ var Home = {
     },
     methods: {
         goToCategory: function(event) {
-            app.$router.push('/category/' + event.target.value)
+            if(event.target.value != "")
+                app.$router.push('/category/' + event.target.value)
+            else
+                app.$router.push('/news/')
         }
     },
     mounted: function() {

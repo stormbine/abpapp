@@ -43,11 +43,11 @@
                 <div class="item">
                     <router-link to="/cattleReport" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]" v-if="currentRouteName != 'cattleReport'">
                         <i class="fas fa-chart-line"></i><br />
-                        Cattle Report
+                        Report
                     </router-link>
                     <div class="toplink" v-bind:class="[ currentRouteName === 'cattleReport' ? 'active' : '' ]" v-else @click="scrollToTop">
                         <i class="fas fa-chart-line"></i><br />
-                        Cattle Report
+                        Report
                     </div>
                 </div>
                 <div class="item">
@@ -58,6 +58,16 @@
                     <div class="toplink" v-bind:class="[ currentRouteName === 'events' ? 'active' : '' ]" v-else @click="scrollToTop">
                         <i class="fas fa-calendar-alt"></i><br />
                         Events
+                    </div>
+                </div>
+                <div class="item">
+                    <router-link to="/delegates" v-bind:class="[ currentRouteName === 'delegates' ? 'active' : '' ]" v-if="currentRouteName != 'delegates'">
+                        <i class="fas fa-user"></i><br />
+                        Delegates
+                    </router-link>
+                    <div class="toplink" v-bind:class="[ currentRouteName === 'delegates' ? 'active' : '' ]" v-else @click="scrollToTop">
+                        <i class="fas fa-user"></i><br />
+                        Delegates
                     </div>
                 </div>
             </div>
