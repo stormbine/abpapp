@@ -277,12 +277,14 @@ var CattleReport = {
         
     },
     beforeRouteUpdate (to, from, next) {
+        mixpanel.track("Cattle Report Open", {"Action": "Open"});
         this.pageData = []
         this.getPostData(12)
         next()
     },
     beforeRouteEnter (to, from, next)
     {
+        mixpanel.track("Cattle Report Open", {"Action": "Open"});
         next(vm => {
             vm.getPostData(12);
         })
