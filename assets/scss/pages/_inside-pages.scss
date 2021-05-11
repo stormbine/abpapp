@@ -336,3 +336,15 @@
         .blog-info .blog-cats { color: $green; }
     }
 }
+
+.lpi-info {
+    table {
+        margin-top: 20px; 
+        th { text-align: center; min-width: 100px; }
+    }
+}
+
+.disclaimer p {
+    padding-top: 30px; 
+    font-style: italic;
+}

@@ -1146,6 +1146,16 @@ footer {
   .blog-post-single.trail-blazers .blog-info .blog-cats {
     color: #65714b; }
 
+.lpi-info table {
+  margin-top: 20px; }
+  .lpi-info table th {
+    text-align: center;
+    min-width: 100px; }
+
+.disclaimer p {
+  padding-top: 30px;
+  font-style: italic; }
+
 /* --------------------------------------------------------------------------
 Media Queries.
 -------------------------------------------------------------------------- */

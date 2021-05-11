@@ -53,12 +53,18 @@ var Delegates = {
         
     },
     beforeRouteUpdate (to, from, next) {
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Delegates Open", {"Action": "Open"});
+        }
         this.pageData = []
         this.getPostData(10)
         next()
     },
     beforeRouteEnter (to, from, next)
     {
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Delegates Open", {"Action": "Open"});
+        }
         next(vm => {
             vm.getPostData(10);
         })

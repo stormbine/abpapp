@@ -83,6 +83,10 @@ var News = {
         }
     },
     beforeRouteUpdate (to, from, next) {
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Latest News", {"Action": "Open"});
+        }
+
         this.latestPosts = []
         let cp = 1;
 
@@ -96,6 +100,10 @@ var News = {
     },
     beforeRouteEnter (to, from, next)
     {
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Latest News", {"Action": "Open"});
+        }
+
         let cp = 1;
 
         if(typeof(to.params.pageNum) !== 'undefined' && to.params.pageNum !== null)

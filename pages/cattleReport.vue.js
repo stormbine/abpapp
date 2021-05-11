@@ -225,6 +225,45 @@ var CattleReport = {
                 </div>
             </section>
 
+            <section class="lpi-info">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Livestock Price Index</h2>
+                        <p>
+                            The Cattle Price Insurance Program offers producers the ability to manager their bottom line by purchasing price insurance to provide a floor price on future cattle sales. This is a snapshot of top coverage offered this past week. LPI-Calf is available to purchase from Feb to June.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Expiry Date</th>
+                                        <th>LPI-Fed <br />Price</th>
+                                        <th>LPI-Feeder <br />Alberta</th>
+                                        <th>LPI-Calf <br />Alberta</th>
+                                        <th>LPI-Feeder <br />SaskMan</th>
+                                        <th>LPI-Calf <br />SaskMan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="lpi in pageData.acf.lpi_info">
+                                        <td><div v-if="lpi.expiry_date">{{ lpi.expiry_date }}</div><div v-else>---</div></td>
+                                        <td><div v-if="lpi.lpi_fed_price">{{ lpi.lpi_fed_price }}</div><div v-else>---</div></td>
+                                        <td><div v-if="lpi.lpi_feeder_alberta">{{ lpi.lpi_feeder_alberta }}</div><div v-else>---</div></td>
+                                        <td><div v-if="lpi.lpi_calf_alberta">{{ lpi.lpi_calf_alberta }}</div><div v-else>---</div></td>
+                                        <td><div v-if="lpi.lpi_feeder_saskman">{{ lpi.lpi_feeder_saskman }}</div><div v-else>---</div></td>
+                                        <td><div v-if="lpi.lpi_calf_saskman">{{ lpi.lpi_calf_saskman }}</div><div v-else>---</div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="disclaimer">
                 <div class="container">
                     <div class="row">
@@ -277,6 +316,9 @@ var CattleReport = {
         
     },
     beforeRouteUpdate (to, from, next) {
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Cattle Report Open", {"Action": "Open"});
+        }
         mixpanel.track("Cattle Report Open", {"Action": "Open"});
         this.pageData = []
         this.getPostData(12)
@@ -284,7 +326,9 @@ var CattleReport = {
     },
     beforeRouteEnter (to, from, next)
     {
-        mixpanel.track("Cattle Report Open", {"Action": "Open"});
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Cattle Report Open", {"Action": "Open"});
+        }   
         next(vm => {
             vm.getPostData(12);
         })

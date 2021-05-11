@@ -45,15 +45,19 @@ var Events = {
         
     },
     beforeRouteUpdate (to, from, next) {
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Events Open", {"Action": "Open"});
+        }
         this.pageData = []
         this.getPostData(250)
-        VueScrollTo.scrollTo('#main_app', 500)
         next()
     },
     beforeRouteEnter (to, from, next)
     {
+        if(typeof mixpanel != "undefined") {
+            mixpanel.track("Events Open", {"Action": "Open"});
+        }
         next(vm => {
-            VueScrollTo.scrollTo('#main_app', 500)
             vm.getPostData(250);
         })
     },

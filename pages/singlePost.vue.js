@@ -38,6 +38,10 @@ var Single = {
                 .get(this.$apiUrl + 'wp-json/wp/v2/posts?slug=' + postName + '&_embed')
                 .then(response => {
                     this.postData = response.data[0]
+                    
+                    if(typeof mixpanel != "undefined") {
+                        mixpanel.track( "Article Open", {"Title": response.data[0].title.rendered} );
+                    }
                 }
             )
         },
