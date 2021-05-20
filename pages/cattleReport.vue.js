@@ -238,7 +238,7 @@ var CattleReport = {
             <section class="lpi-info">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Livestock Price Index</h2>
+                        <h2>Livestock Price Insurance Index</h2>
                         <p>
                             The Cattle Price Insurance Program offers producers the ability to manager their bottom line by purchasing price insurance to provide a floor price on future cattle sales. This is a snapshot of top coverage offered this past week. LPI-Calf is available to purchase from Feb to June.
                         </p>
