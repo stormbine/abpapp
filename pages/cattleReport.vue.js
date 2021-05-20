@@ -225,6 +225,16 @@ var CattleReport = {
                 </div>
             </section>
 
+            <section class="disclaimer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p>Disclaimer: Information on this page is not for further distribution without permission from Canfax.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="lpi-info">
                 <div class="row">
                     <div class="col-12">
@@ -259,16 +269,6 @@ var CattleReport = {
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="disclaimer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <p>All information sourced from Statistics Canada, Alberta Agriculture and Canfax.</p>
                         </div>
                     </div>
                 </div>
