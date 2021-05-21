@@ -2,8 +2,14 @@ var Delegates = {
 	template: `
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-7 col-lg-8">
+            <div class="col-12">
                 <div class="page-feat-img"><img :src="pageData.featured_image" class="img-fluid" /></div>
+                <div v-html="contactData.post_content"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
                 <div v-html="pageData.post_content"></div>
             </div>
         </div>
@@ -22,7 +28,7 @@ var Delegates = {
                             <div class="col-12 col-md-8">
                                 <h3 v-html="delegate.name"></h3>
                                 <div class="del-con"><i class="fas fa-phone"></i> <span v-html="delegate.cell_number"></span></div>
-                                <div class="del-con"><i class="fas fa-envelope"></i> <span v-html="delegate.email"></span></div>
+                                <div class="del-con"><i class="fas fa-envelope"></i> <a :href="'mailto:' + delegate.email">{{ delegate.email }}</div>
 
                                 <div class="del-bio" v-html="delegate.bio"></div>
                             </div>
@@ -36,7 +42,8 @@ var Delegates = {
     data() {
         return {
             pageData: [],
-            contactZones: []
+            contactZones: [],
+            contactData: []
         }
     },
     methods: {
@@ -47,6 +54,13 @@ var Delegates = {
                 .then(response => {
                     this.pageData = response.data
                     this.contactZones = response.data.acf.zone
+                }
+            )
+
+            axios
+                .get(this.$apiUrl + 'wp-json/abp-app/v1/get-page/442')
+                .then(response => {
+                    this.contactData = response.data
                 }
             )
         },
