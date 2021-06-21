@@ -15,6 +15,7 @@ var Home = {
                             <option value="issues-insights-influence">Issues & Insights</option>
                             <option value="trail-blazers">Trailblazers</option>
                             <option value="weather">Weather</option>
+                            <option value="press-releases">Press Releases</option>
                         </select>
                     </div>
                 </div>
