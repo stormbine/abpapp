@@ -68,6 +68,7 @@ var Category = {
                 "issues-insights-influence": 8,
                 "trail-blazers": 4,
                 "weather": 6,
+                "press-releases": 270,
             },
             categorySelected: "",
         }
