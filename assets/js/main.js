@@ -11,6 +11,7 @@ var routes = [
     { path: '/delegates', component: Delegates, name: "delegates" },
     { path: '/staff', component: Staff, name: "staff" },
     { path: '/single/:postName', component: Single, name: "single" },
+    { path: '/author/:authorName', component: Author, name: "author" },
 ];
 
 const scrollBehavior = (to, from, savedPosition) => {

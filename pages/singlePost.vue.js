@@ -3,16 +3,20 @@ var Single = {
     <div class="content-wrap" v-if="postData != ''">
         <div class="container">
             <section class="blog-post-wrap">
-                <div class="blog-post-single" :class="postData._embedded['wp:term'][0][0].slug">
+                <div class="blog-post-single" :class="postData.post_current_cat.slug">
                     <div class="row">
                         <div class="col-12">
-                            <div class="blog-feat-img"><img v-if="postData._embedded['wp:featuredmedia']" :src="postData._embedded['wp:featuredmedia'][0].source_url" class="img-fluid" /></div>
+                            <div class="blog-feat-img"><img v-if="postData.featured_image" :src="postData.featured_image" class="img-fluid" /></div>
                             <div class="blog-info">
                                 <span class="date-text" v-html="postData.formatted_date"></span>
-                                <span class="blog-cats" v-html="postData._embedded['wp:term'][0][0].name"></span>
+                                <span class="blog-cats" v-html="postData.post_current_cat.cat_name"></span>
+
+                                <div v-if="postData.acf.author" class="blog-auth-top" style="padding-top: 8px;">
+                                    by <router-link :to="{ name: 'author', params: { authorName: postData.acf.author.ID }}" v-html="postData.acf.author.post_title"></router-link>
+                                </div>
                             </div>
-                            <h2 v-html="postData.title.rendered"></h2> 
-                            <div v-html="postData.content.rendered"></div>
+                            <h2 v-html="postData.post_title"></h2> 
+                            <div v-html="postData.post_content"></div>
                         </div>
                     </div>
                 </div>
@@ -35,10 +39,10 @@ var Single = {
         getPostData: function(postName)
         {
             axios
-                .get(this.$apiUrl + 'wp-json/wp/v2/posts?slug=' + postName + '&_embed')
+                .get(this.$apiUrl + 'wp-json/abp-app/v1/get-post-by-slug/' + postName)
                 .then(response => {
                     this.postData = response.data[0]
-                    
+
                     if(typeof mixpanel != "undefined") {
                         mixpanel.track( "Article Open", {"Title": response.data[0].title.rendered} );
                     }
