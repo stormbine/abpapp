@@ -15,7 +15,7 @@ var Delegates = {
         </div>
 
         <div id="map_wrap" class="delegate-map text-center">
-            <img src="http://abpdaily.local/wp-content/themes/abp/img/abp-zonemap.jpg" usemap="#image-map" class="img-fluid">
+            <img src="http://abpdaily.com/wp-content/themes/abp/img/abp-zonemap.jpg" usemap="#image-map" class="img-fluid">
             <map name="image-map">
                 <area target="" alt="NW" title="NW" href="#" @click.prevent="mapClick('northwest')" coords="57,20,176,23,177,50,217,54,218,157,192,167,185,314,158,318,130,343,83,352,34,340" shape="poly">
                 <area target="" alt="NE" title="NE" href="#" @click.prevent="mapClick('northeast')" coords="178,23,326,20,355,444,310,426,272,411,249,384,273,312,277,267,262,171,245,161,220,160,224,47,183,48" shape="poly">
