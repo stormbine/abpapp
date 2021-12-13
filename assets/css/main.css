@@ -641,6 +641,38 @@ header {
       .app-nav .item a i, .app-nav .item .toplink i {
         font-size: 24px; }
 
+.account-top {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 4px 10px;
+  z-index: 9999;
+  text-align: right; }
+  .account-top .account-toggle {
+    font-size: 22px; }
+    .account-top .account-toggle.active {
+      color: #7a1600; }
+  .account-top .account-menu {
+    background: #ffffff;
+    box-shadow: 0px 0 3px rgba(88, 88, 88, 0.4);
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 45px;
+    right: 10px;
+    width: 150px;
+    display: none; }
+    .account-top .account-menu.active {
+      display: block; }
+    .account-top .account-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      .account-top .account-menu ul li {
+        text-align: left; }
+        .account-top .account-menu ul li a {
+          font-size: 12px; }
+
 footer {
   padding: 40px 0 0 0;
   background: #231f20;
@@ -1155,6 +1187,88 @@ footer {
 .disclaimer p {
   padding-top: 30px;
   font-style: italic; }
+
+.login-page {
+  padding: 40px 20px 0 20px; }
+  .login-page .login-links {
+    line-height: 2;
+    font-size: 14px; }
+
+.login-form {
+  margin-bottom: 25px; }
+  .login-form label {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600; }
+  .login-form .error-message {
+    font-size: 12px;
+    color: #f71d1d;
+    padding: 5px 0 0 0;
+    display: none; }
+  .login-form .invalid .form-control {
+    border-color: #f71d1d; }
+  .login-form .invalid .error-message {
+    display: block; }
+  .login-form .login-message {
+    border: 1px solid #028705;
+    color: #028705;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 13px;
+    padding: 12px;
+    display: none; }
+    .login-form .login-message.error {
+      border: 1px solid #f71d1d;
+      color: #f71d1d; }
+    .login-form .login-message.active {
+      display: block; }
+
+.create-account-page {
+  padding: 0 20px; }
+  .create-account-page h3 {
+    color: #7a1600; }
+
+.profile-wrap {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 15px; }
+  .profile-wrap h2 {
+    font-size: 16px;
+    line-height: 1.4;
+    color: #7a1600;
+    margin-top: 0; }
+  .profile-wrap .profile-options ul {
+    border-top: 1px solid #c9d0e3;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; }
+    .profile-wrap .profile-options ul li {
+      padding: 20px;
+      border-left: 1px solid #c9d0e3;
+      border-bottom: 1px solid #c9d0e3;
+      font-size: 13px;
+      line-height: 19px;
+      flex: 0 0 50%;
+      max-width: 50%; }
+      .profile-wrap .profile-options ul li:nth-child(even) {
+        border-right: 1px solid #c9d0e3; }
+      .profile-wrap .profile-options ul li:last-child {
+        border-right: 1px solid #c9d0e3;
+        flex: 0 0 100%;
+        max-width: 100%; }
+      .profile-wrap .profile-options ul li a {
+        display: block;
+        font-size: 11px;
+        line-height: 19px;
+        text-align: center; }
+        .profile-wrap .profile-options ul li a i {
+          display: block;
+          padding: 8px;
+          font-size: 30px;
+          line-height: 22px;
+          color: #7a1600; }
 
 /* --------------------------------------------------------------------------
 Media Queries.

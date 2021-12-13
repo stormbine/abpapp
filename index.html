@@ -11,14 +11,28 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <link  rel="stylesheet" href="assets/lib/fontawesome-free-5.15.2-web/css/all.css">
 
-        <script src="assets/js/vue.min.js"></script>
+        <script src="assets/js/vue.js"></script>
         <script src="assets/js/vue-router.js"></script>
         <script src="assets/js/axios.min.js"></script>
         <script src="assets/js/vue-scrollto.js"></script>
+        <script src="assets/js/vuex.js"></script>
     </head>
 
     <body>
         <div id="main_app" class="page-wrap">
+            <div class="account-top">
+                <div class="account-toggle" @click="toggleNav()" v-bind:class="[ this.$store.state.navOpen === 1 ? 'active' : '' ]"><i class="fas fa-user-circle"></i></div>
+                <div class="account-menu" v-bind:class="[ this.$store.state.navOpen === 1 ? 'active' : '' ]">
+                    <ul v-if="this.$store.state.isLoggedIn">
+                        <li ><router-link to="/profile">Profile</router-link></li>
+                        <li><a href="#" @click.prevent="logoutUser()">Logout</a></li>
+                    </ul>
+                    <ul v-else>
+                        <li><router-link to="/login">Login</router-link></li>
+                        <li><router-link to="/createAccount">Create Account</router-link></li>
+                    </ul>
+                </div>
+            </div>
             <div class="app-top-bar">
                 <div class="inside" v-if="currentRouteName === 'category' || currentRouteName === 'single' || currentRouteName === 'news'">
                     <a @click="$router.go(-1)" class="back-btn"><i class="fas fa-chevron-left"></i> BACK</a>
@@ -93,6 +107,11 @@
         <script src="pages/delegates.vue.js"></script>
         <script src="pages/singlePost.vue.js"></script>
         <script src="pages/author.vue.js"></script>
+        <script src="pages/login.vue.js"></script>
+        <script src="pages/createAccount.vue.js"></script>
+        <script src="pages/profile.vue.js"></script>
+        <script src="pages/updateAccount.vue.js"></script>
+        <script src="pages/updatePassword.vue.js"></script>
         
         <script src="assets/js/main.js"></script>
     </body>

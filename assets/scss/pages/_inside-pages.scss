@@ -348,3 +348,114 @@
     padding-top: 30px; 
     font-style: italic;
 }
+
+.login-page {
+    padding: 40px 20px 0 20px; 
+
+    .login-links {
+        line-height: 2;
+        font-size: 14px;
+    }
+}
+
+.login-form {
+    margin-bottom: 25px;
+
+    label {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .error-message {
+        font-size: 12px;
+        color: #f71d1d;
+        padding: 5px 0 0 0;
+        display: none;
+    }
+
+    .invalid {
+        .form-control { border-color: #f71d1d; }
+        .error-message{ display: block; }
+    }
+
+    .login-message {
+        border: 1px solid #028705;
+        color: #028705;
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 13px;
+        padding: 12px;
+        display: none;
+
+        &.error {
+            border: 1px solid #f71d1d;
+            color: #f71d1d;
+        }
+
+        &.active { display: block; }
+    }
+}
+
+.create-account-page {
+    padding: 0 20px;
+
+    h3 { color: $red; }
+}
+
+.profile-wrap {
+    width: 100%;
+    overflow: hidden;
+    padding: 0 15px;
+
+    h2 {
+        font-size: 16px;
+        line-height: 1.4;
+        color: $red;
+        margin-top: 0;
+    }
+
+    .profile-options {
+        ul {
+            border-top: 1px solid #c9d0e3;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                padding: 20px;
+                border-left: 1px solid #c9d0e3;
+                border-bottom: 1px solid #c9d0e3;
+                font-size: 13px;
+                line-height: 19px;
+                flex: 0 0 50%;
+                max-width: 50%;
+
+                &:nth-child(even) { border-right: 1px solid #c9d0e3; }
+                &:last-child { 
+                    border-right: 1px solid #c9d0e3;
+                    flex: 0 0 100%;
+                    max-width: 100%; 
+                }
+
+                a { 
+                    display: block;
+                    font-size: 11px;
+                    line-height: 19px;
+                    text-align: center;
+
+                    i { 
+                        display: block;
+                        padding: 8px;
+                        font-size: 30px;
+                        line-height: 22px;
+                        color: $red;
+                    }
+
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,17 @@
-Vue.prototype.$apiUrl = 'https://abpdaily.com/'
+Vue.prototype.$apiUrl = 'http://stormbine.com/abp/'
+
+const store = new Vuex.Store({
+    state: {
+        navOpen: 0,
+        display_name: '',
+        user_logged_in: 0,
+        user_details: {},
+        isLoggedIn: false,
+    },
+    mutations: {
+
+    }
+})
 
 var routes = [
     { path: '/', component: Home, name: "home" },
@@ -12,6 +25,11 @@ var routes = [
     { path: '/staff', component: Staff, name: "staff" },
     { path: '/single/:postName', component: Single, name: "single" },
     { path: '/author/:authorName', component: Author, name: "author" },
+    { path: '/login', component: Login, name: "login" },
+    { path: '/createAccount', component: CreateAccount, name: "createAccount" },
+    { path: '/profile', component: Profile, name: "profile", meta: { requiresAuth: true }},
+    { path: '/updateAccount', component: UpdateAccount, name: "updateAccount", meta: { requiresAuth: true }},
+    { path: '/updatePassword', component: UpdatePassword, name: "updatePassword", meta: { requiresAuth: true }},
 ];
 
 const scrollBehavior = (to, from, savedPosition) => {
@@ -26,14 +44,38 @@ const scrollBehavior = (to, from, savedPosition) => {
     });
   };
   
-var router = new VueRouter({
+const router = new VueRouter({
     routes: routes,
     base: '/',
     scrollBehavior,
 });
-  
+
+router.beforeEach((to, from, next) => {
+    if(router.app.$store)
+    {
+        console.log("has state")
+    }
+    else
+    {
+        console.log("no state")
+    }
+
+    if (to.meta.requiresAuth && router.app.$store) {
+        if (router.app.$store.state.isLoggedIn) {
+            next();
+        }
+        else
+        {
+            next({ name: "login" })
+        }
+    } else {
+        next();
+    }
+  });
+
 var app = new Vue({
     el: '#main_app',
+    store: store,
     router: router,
     data: {
         weatherIcon: "01d",
@@ -47,13 +89,13 @@ var app = new Vue({
     methods: {
         toggleNav: function()
         {
-            if(this.navOpen == 0)
+            if(this.$store.state.navOpen == 0)
             {
-                this.navOpen = 1
+                this.$store.state.navOpen = 1
             }
             else
             {
-                this.navOpen = 0
+                this.$store.state.navOpen = 0
             }
         },
         toggleCats: function()
@@ -84,6 +126,15 @@ var app = new Vue({
                 left: 0, 
                 behavior: 'smooth'
             });
+       },
+       logoutUser: function() {
+           this.$store.state.display_name = ''
+           this.$store.state.isLoggedIn = false
+           localStorage.removeItem('abpAccessToken');
+
+           this.$store.state.navOpen = 0
+
+           router.push({ path: '/' })
        }
     }, 
     computed: {
@@ -101,6 +152,27 @@ var app = new Vue({
         
     },
     mounted () {
-
+        if(localStorage.abpAccessToken)
+        {
+            let tokenObject = JSON.parse(localStorage.abpAccessToken)
+            //validate the token.
+            axios({
+                method: 'post',
+                url: this.$apiUrl + 'wp-json/jwt-auth/v1/token/validate',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + tokenObject.token
+                }
+            })
+            .then((res) => {
+                this.$store.state.display_name = tokenObject.profile.user_display_name
+                this.$store.state.isLoggedIn = true
+            })
+            .catch((err) => {
+                // bad token, just remove it.
+                localStorage.removeItem('abpAccessToken');
+            });
+        }
     } 
 })
