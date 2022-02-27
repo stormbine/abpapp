@@ -1,24 +1,7 @@
-var News = {
+var Feed = {
 	template: `
     <div class="content-wrap" v-if="latestPosts.length > 0">
         <div class="container">
-            <div class="category-browse">
-                <div class="form-group">
-                    <select name="blog-cats" class="form-control" id="blogCategories" v-model="categorySelected" @change="goToCategory($event)">
-                        <option value="">Latest News</option>
-                        <option value="business-tools">Business Tools</option>
-                        <option value="checking-in-with-abp">Checking in with ABP</option>
-                        <option value="current-markets-forecasts">Current Markets & Forcasts</option>
-                        <option value="innovation-technology">Innovation & Technology</option>
-                        <option value="inspiration">Inspiration</option>
-                        <option value="issues-insights-influence">Issues & Insights</option>
-                        <option value="trail-blazers">Trailblazers</option>
-                        <option value="weather">Weather</option>
-                        <option value="press-releases">Press Releases</option>
-                    </select>
-                </div>
-            </div>
-
             <section class="latest-posts">
                 <div v-for="newsPosts in latestPosts" class="blog-post" :class="newsPosts._embedded['wp:term'][0][0].slug">
                     <div class="row">
@@ -47,9 +30,9 @@ var News = {
             </section>
 
             <section class="pagination" v-if="latestPosts.length">
-                <router-link class="btn btn-prev" :to="{ name: 'news', params: { pageNum: currentPage - 1 }}" v-if="currentPage > 1"><i class="fas fa-arrow-left"></i></router-link>
+                <router-link class="btn btn-prev" :to="{ name: 'feed', params: { pageNum: currentPage - 1 }}" v-if="currentPage > 1"><i class="fas fa-arrow-left"></i></router-link>
                 <div class="pg-count">{{ currentPage }} of {{ totalPages }}</div>
-                <router-link class="btn btn-next" :to="{ name: 'news', params: { pageNum: currentPage + 1 }}" v-if="currentPage < totalPages"><i class="fas fa-arrow-right"></i></router-link>
+                <router-link class="btn btn-next" :to="{ name: 'feed', params: { pageNum: currentPage + 1 }}" v-if="currentPage < totalPages"><i class="fas fa-arrow-right"></i></router-link>
             </section>
         </div>
     </div>
@@ -65,34 +48,33 @@ var News = {
             latestPosts: [],
             totalPages: 0,
             totalPosts: 0,
-            currentPage: 1,
+            currentPage: 2,
             categorySelected: "",
         }
     },
     methods: {
         getPostData: function(pageNum)
         {
-            axios
-                .get(this.$apiUrl + 'wp-json/wp/v2/posts?per_page=10&page=' + pageNum + '&_embed')
-                .then(response => {
-                    this.latestPosts = response.data
+            if(store.state.fav_categories.length > 0)
+            {
+                catQuery = "categories=" + store.state.fav_categories.join() + "&"
 
-                    this.totalPages = response.headers['x-wp-totalpages']
-                    this.totalPosts = response.headers['x-wp-total']
-                    this.currentPage = pageNum
-                }
-            )
+                axios
+                    .get(this.$apiUrl + 'wp-json/wp/v2/posts?' + catQuery + 'per_page=6&page=' + pageNum + '&_embed')
+                    .then(response => {
+                        this.latestPosts = response.data
+
+                        this.totalPages = response.headers['x-wp-totalpages']
+                        this.totalPosts = response.headers['x-wp-total']
+                        this.currentPage = parseInt(pageNum)
+                    }
+                )
+            }
         },
-        goToCategory: function(event) {
-            if(event.target.value != "")
-                app.$router.push('/category/' + event.target.value)
-            else
-                app.$router.push('/news/')
-        }
     },
     beforeRouteUpdate (to, from, next) {
         if(typeof mixpanel != "undefined") {
-            mixpanel.track("Latest News", {"Action": "Open"});
+            mixpanel.track("Filtered Feed", {"Action": "Open"});
         }
 
         this.latestPosts = []
@@ -104,12 +86,15 @@ var News = {
         }
 
         this.getPostData(cp)
+
+        this.$store.state.navOpen = 0
+
         next()
     },
     beforeRouteEnter (to, from, next)
     {
         if(typeof mixpanel != "undefined") {
-            mixpanel.track("Latest News", {"Action": "Open"});
+            mixpanel.track("Filtered Feed", {"Action": "Open"});
         }
 
         let cp = 1;
@@ -121,6 +106,8 @@ var News = {
         
         next(vm => {
             vm.getPostData(cp);
+
+            vm.$store.state.navOpen = 0
         })
     },
     mounted: function() {

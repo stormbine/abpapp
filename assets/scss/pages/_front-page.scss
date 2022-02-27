@@ -38,6 +38,7 @@
         margin: 0 0 8px 0;
         letter-spacing: 1px;
         font-family: $lightFont;
+        position: relative;
 
         .date-text {
             color: $red;
@@ -47,6 +48,19 @@
         .blog-cats { 
             color: $brown;
             display: block;
+        }
+
+        .fav-link {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+
+            .fav-icon {
+                font-size: 18px;
+                color: $red;
+                cursor: pointer;
+            }
         }
     }
     

@@ -21,10 +21,26 @@
     <body>
         <div id="main_app" class="page-wrap">
             <div class="account-top">
-                <div class="account-toggle" @click="toggleNav()" v-bind:class="[ this.$store.state.navOpen === 1 ? 'active' : '' ]"><i class="fas fa-user-circle"></i></div>
+                <div class="notify-toggle" @click="toggleNav(2)" v-bind:class="[ this.$store.state.navOpen === 2 ? 'active' : '' ]" v-if="this.$store.state.isLoggedIn"><i class="fas fa-bell"></i></div>
+                <div class="notify-menu" v-bind:class="[ this.$store.state.navOpen === 2 ? 'active' : '' ]">
+                    <div id="notifyMenuItems" v-if="$store.state.latest_articles.length > 0">
+                        <div v-for="(newsPosts, index) in $store.state.latest_articles" class="latest-notify" :class="newsPosts._embedded['wp:term'][0][0].slug">
+                            <h2><router-link :to="{ name: 'single', params: { postName: newsPosts.slug }}" v-html="newsPosts.title.rendered"></router-link></h2> 
+                            <div class="blog-info">
+                                <span class="blog-cats" v-html="newsPosts._embedded['wp:term'][0][0].name"></span>
+                                <span class="date-text" v-html="getNotifyDate(newsPosts.formatted_date)"></span>
+                            </div>
+                        </div>
+                        <div class="feed-btn"><a href="#/feed/2">Show More</a></router-link></div>
+                    </div>
+                    <div v-else>
+                        <p class="no-not">No current notifications. Add some <router-link to="/favCategories">favourite categories</router-link> to see when new articles are posted in those sections.</p>
+                    </div>
+                </div>
+                <div class="account-toggle" @click="toggleNav(1)" v-bind:class="[ this.$store.state.navOpen === 1 ? 'active' : '' ]"><i class="fas fa-user-circle"></i></div>
                 <div class="account-menu" v-bind:class="[ this.$store.state.navOpen === 1 ? 'active' : '' ]">
                     <ul v-if="this.$store.state.isLoggedIn">
-                        <li ><router-link to="/profile">Profile</router-link></li>
+                        <li><router-link to="/profile">Profile</router-link></li>
                         <li><a href="#" @click.prevent="logoutUser()">Logout</a></li>
                     </ul>
                     <ul v-else>
@@ -112,6 +128,10 @@
         <script src="pages/profile.vue.js"></script>
         <script src="pages/updateAccount.vue.js"></script>
         <script src="pages/updatePassword.vue.js"></script>
+        <script src="pages/favCategories.vue.js"></script>
+        <script src="pages/favPosts.vue.js"></script>
+        <script src="pages/feed.vue.js"></script>
+        <script src="pages/userComments.vue.js"></script>
         
         <script src="assets/js/main.js"></script>
     </body>

@@ -3,6 +3,9 @@ var Login = {
     <div class="content-wrap" v-if="loggingIn == 0">
         <div class="login-page">
             <div class="login-form">
+                <div id="msgArea" class="login-message active" v-if="$store.state.formMessage.messageText != ''">
+                    {{ $store.state.formMessage.messageText }}
+                </div>
                 <form novalidate @submit.prevent="logUserIn">
                     <div id="mainLoginMessage" class="login-message"></div>
                     <div id="caUname" class="form-group">
@@ -48,6 +51,9 @@ var Login = {
             let passwordField = document.getElementById('loginPassword')
             let mainMessage = document.getElementById('mainLoginMessage')
 
+            //reset the login text message
+            this.$store.state.formMessage.messageText = ""
+
             if(usernameField.value == "")
             {
                 usernameField.parentElement.classList.add("invalid")
@@ -92,6 +98,15 @@ var Login = {
                         localStorage.abpAccessToken = JSON.stringify(res.data)
                         this.$store.state.display_name = res.data.profile.user_display_name
                         this.$store.state.isLoggedIn = true
+
+                        //get the user favs.
+                        axios
+                            .get(this.$apiUrl + 'wp-json/abp-app/v1/get-user-favs/' + res.data.profile.id)
+                            .then(userfavs => {
+                                this.$store.state.fav_articles = userfavs.data.articles
+                                this.$store.state.fav_categories = userfavs.data.categories
+                            }
+                        )
 
                         this.loggingIn = 0
                         router.push({ path: 'profile' })

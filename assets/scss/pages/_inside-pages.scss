@@ -249,16 +249,31 @@
         line-height: 1.2;
         margin: 20px 0 15px 0;
         letter-spacing: 1px;
+        position: relative;
 
         .date-text {
             padding-right: 30px;
             font-weight: 700;
             color: $red;
+            display: block;
         }
 
         .blog-cats { 
             font-weight: 600;
             color: $grey;
+            display: block;
+        }
+
+        .fav-link {
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            .fav-icon {
+                font-size: 18px;
+                color: $red;
+                cursor: pointer;
+            }
         }
     }
 
@@ -358,7 +373,7 @@
     }
 }
 
-.login-form {
+.login-form, .cat-form {
     margin-bottom: 25px;
 
     label {
@@ -434,11 +449,6 @@
                 max-width: 50%;
 
                 &:nth-child(even) { border-right: 1px solid #c9d0e3; }
-                &:last-child { 
-                    border-right: 1px solid #c9d0e3;
-                    flex: 0 0 100%;
-                    max-width: 100%; 
-                }
 
                 a { 
                     display: block;
@@ -457,5 +467,27 @@
                 }
             }
         }
+    }
+
+    .catlist {
+        .bcat {
+            margin-bottom: 5px;
+        }
+    }
+
+    .btn-cats { margin-top: 10px; }
+}
+
+.fav-inst {
+    text-align: center;
+}
+
+.sicon {
+    margin-bottom: 20px;
+
+    a i { 
+        font-size: 24px;
+        color: $red;
+        margin-right: 8px;
     }
 }

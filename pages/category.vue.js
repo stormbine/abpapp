@@ -9,6 +9,7 @@ var Category = {
                         <option value="business-tools">Business Tools</option>
                         <option value="checking-in-with-abp">Checking in with ABP</option>
                         <option value="current-markets-forecasts">Current Markets & Forcasts</option>
+                        <option value="health-production">Health & Production</option>  
                         <option value="innovation-technology">Innovation & Technology</option>
                         <option value="inspiration">Inspiration</option>
                         <option value="issues-insights-influence">Issues & Insights</option>
@@ -29,6 +30,13 @@ var Category = {
                             <div class="blog-info">
                                 <span class="date-text" v-html="newsPosts.formatted_date"></span>
                                 <span class="blog-cats" v-html="newsPosts._embedded['wp:term'][0][0].name"></span>
+
+                                <div class="fav-link" v-if="$store.state.isLoggedIn">
+                                    <div class="fav-icon" @click="favArticle(newsPosts.id, $store.state.user_details.id)">
+                                        <i class="fas fa-thumbs-up" v-if="$store.state.fav_articles.includes(newsPosts.id)"></i>
+                                        <i class="far fa-thumbs-up" v-else></i>
+                                    </div> 
+                                </div>
                             </div>
                             <h2><router-link :to="{ name: 'single', params: { postName: newsPosts.slug }}" v-html="newsPosts.title.rendered"></router-link></h2> 
                             <p v-html="newsPosts.excerpt.rendered"></p>
@@ -69,8 +77,10 @@ var Category = {
                 "trail-blazers": 4,
                 "weather": 6,
                 "press-releases": 270,
+                "health-production": 280
             },
             categorySelected: "",
+            pageMessage: "",
         }
     },
     methods: {

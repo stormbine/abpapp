@@ -35,6 +35,12 @@ var CreateAccount = {
                         <input type="password" class="form-control" id="loginPasswordAgain" required v-model="userDetails.passwordAgain">
                         <div class="error-message"></div>
                     </div>
+                    <div id="caSignup" class="form-group" style="padding: 0 22px;">
+                        <input class="form-check-input" type="checkbox" value="" id="signupCheck" v-model="userDetails.emailSignup">
+                        <label class="form-check-label" for="signupCheck">
+                            Sign up for more content from ABP Daily
+                        </label> 
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -52,6 +58,7 @@ var CreateAccount = {
                 password: '',
                 passwordAgain: '',
                 username: '',
+                emailSignup: false
             },
             formErrors: 0,
             usernameErrors: 0,
@@ -103,6 +110,7 @@ var CreateAccount = {
                     }
                 })
                 .then((res) => {
+                    this.$store.state.formMessage.messageText = "Account Created. Please Login."
                     router.push({ path: 'login' })
                 })
                 .catch((err) => {
@@ -189,7 +197,7 @@ var CreateAccount = {
         axios
             .post(this.$apiUrl + 'wp-json/jwt-auth/v1/token', {
                 username: 'abpadmin',
-                password: 'cZLU mEVD zR8O W6yF YRJo yxCR',
+                password: 'fA70 C2LT kG8l wAqh SZr6 QTfU',
             })
             .then((res) => {
                 this.accountToken = res.data.token

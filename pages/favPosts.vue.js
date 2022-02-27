@@ -1,27 +1,13 @@
-var Home = {
+var FavPosts = {
 	template: `
     <div class="content-wrap" v-if="latestPosts.length > 0">
         <div class="container">
             <section class="latest-posts">
-                <div class="category-browse">
-                    <div class="form-group">
-                        <select name="blog-cats" class="form-control" id="blogCategories" v-model="categorySelected" @change="goToCategory($event)">
-                            <option value="">Latest News</option>
-                            <option value="business-tools">Business Tools</option>
-                            <option value="checking-in-with-abp">Checking in with ABP</option>
-                            <option value="current-markets-forecasts">Current Markets & Forcasts</option>
-                            <option value="health-production">Health & Production</option>             
-                            <option value="innovation-technology">Innovation & Technology</option>
-                            <option value="inspiration">Inspiration</option>
-                            <option value="issues-insights-influence">Issues & Insights</option>
-                            <option value="trail-blazers">Trailblazers</option>
-                            <option value="weather">Weather</option>
-                            <option value="press-releases">Press Releases</option>
-                        </select>
-                    </div>
+                <h1>Liked Posts</h1>
+                <div v-if="latestPosts[0] == 'none'">
+                    <p class="fav-inst">You have no liked posts. <br /><br />Clicking on the thumbs up icon (<i class="far fa-thumbs-up"></i>) on any post will like it and save it here for later.</p>
                 </div>
-                <h1>What's New</h1>
-                <div v-for="(newsPosts, index) in latestPosts" class="blog-post" :class="newsPosts._embedded['wp:term'][0][0].slug">
+                <div v-for="(newsPosts, index) in latestPosts" class="blog-post" :class="newsPosts._embedded['wp:term'][0][0].slug" v-else>
                     <section class="featured-cta" v-if="index == 3 && pageAds.length > 0">
                         <div class="row">
                             <div class="col-12">
@@ -53,10 +39,6 @@ var Home = {
                     </div>
                 </div>
             </section>
-
-            <section class="all-posts-btn">
-                <router-link class="btn" to="/news">View all</router-link>
-            </section>
         </div>
     </div>
     <div class="contentLoader" v-else>
@@ -75,31 +57,31 @@ var Home = {
         }
     },
     methods: {
-        goToCategory: function(event) {
-            if(event.target.value != "")
-                app.$router.push('/category/' + event.target.value)
-            else
-                app.$router.push('/news/')
-        }
+
     },
     mounted: function() {
-        this.$store.state.navOpen = 0
+        let postQuery = ""
 
-        axios
-            .get(this.$apiUrl + 'wp-json/wp/v2/posts?per_page=6&_embed')
-            .then(lposts => {
-                this.latestPosts = lposts.data
-            }
-        )
+        if(store.state.fav_articles.length > 0)
+        {
+            store.state.fav_articles.forEach(function(element)
+            {
+                postQuery = postQuery + "include[]=" + element + "&"
+            })
+            
+            postQuery = postQuery.slice(0, -1)
 
-        axios
-            .get(this.$apiUrl + 'wp-json/abp-app/v1/get-page-ads/sidebar')
-            .then(lads => {
-                this.pageAds = lads.data
-            }
-        )
-
-        this.getLatestFavs()
+            axios
+                .get(this.$apiUrl + 'wp-json/wp/v2/posts?' + postQuery + '&_embed')
+                .then(lposts => {
+                    this.latestPosts = lposts.data
+                }
+            )
+        }
+        else
+        {
+            this.latestPosts = ["none"]
+        }
 
         VueScrollTo.scrollTo('#main_app', 500)
     }

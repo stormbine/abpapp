@@ -234,9 +234,25 @@ header {
     text-align: right;
 
     .account-toggle {
-        font-size: 22px;
+        font-size: 24px;
+        display: inline-block;
 
         &.active { color: $red; }
+    }
+
+    .notify-toggle {
+        display: inline-block;
+        color: #ffffff;
+        background: #000000;
+        height: 24px;
+        width: 24px;
+        text-align: center;
+        line-height: 24px;
+        border-radius: 16px;
+        font-size: 12px;
+        margin-right: 2px;
+        position: relative;
+        top: -5px;
     }
 
     .account-menu {
@@ -266,6 +282,105 @@ header {
                     font-size: 12px;
                 }
             }
+        }
+    }
+
+    .notify-menu {
+        background: #ffffff;
+        box-shadow: 0px 0 3px rgba(88, 88, 88, 0.4);
+        padding: 0 10px;
+        border-radius: 5px;
+        position: absolute;
+        top: 45px;
+        right: 2.5vw;
+        width: 95vw;
+        display: none;
+        text-align: left;
+
+        &.active {
+            display: block;
+        }
+
+        .no-not {
+            padding: 40px 0;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 1.5;
+            color: $grey;
+            font-style: italic;
+            text-align: center;
+
+            a { text-decoration: underline; }
+        }
+
+        .latest-notify {
+            border-bottom: 1px solid rgba(88, 88, 88, 0.4);
+            padding: 8px 0 10px 0;
+
+            &:last-child { border-bottom: 0; }
+
+            h2, h2 a {
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            .blog-info {
+                font-size: 10px;
+                line-height: 1.2;
+                display: flex;
+                padding-top: 5px;
+        
+                .date-text {
+                    flex: 0 0 15%;
+                    max-width: 15%;
+                    color: $grey;
+                    font-style: italic;
+                    text-align: right;
+                }
+        
+                .blog-cats { 
+                    flex: 0 0 85%;
+                    max-width: 85%;
+                    text-transform: uppercase;
+                    color: $grey;
+                }
+        
+            }
+
+            &.innovation-technology {
+                .blog-info .blog-cats { color: $blue; }
+            }
+            &.business-tools {
+                .blog-info .blog-cats { color: $brown; }
+            }
+            &.current-markets-forecasts {
+                .blog-info .blog-cats { color: $yellow; }
+            }
+            &.inspiration {
+                .blog-info .blog-cats { color: $new-yellow; }
+            }
+            &.issues-insights-influence {
+                .blog-info .blog-cats { color: $grey; }
+            }
+            &.trail-blazers {
+                .blog-info .blog-cats { color: $green; }
+            }
+        }
+    }
+
+    .feed-btn {
+        text-align: center;
+        padding: 10px 0;
+        font-size: 11px;
+
+        a {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 11px;
+            font-weight: 700;
+            color: $red;
         }
     }
 }
