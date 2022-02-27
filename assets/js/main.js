@@ -1,4 +1,4 @@
-Vue.prototype.$apiUrl = 'http://abpdaily.local/'
+Vue.prototype.$apiUrl = 'https://abpdaily.com/'
 
 const store = new Vuex.Store({
     state: {

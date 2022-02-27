@@ -194,10 +194,11 @@ var CreateAccount = {
     mounted: function() {
         // dev fA70 C2LT kG8l wAqh SZr6 QTfU
         // stage cZLU mEVD zR8O W6yF YRJo yxCR
+        // live wDIz cBe5 uYBS 3qZS YWok ttVy
         axios
             .post(this.$apiUrl + 'wp-json/jwt-auth/v1/token', {
                 username: 'abpadmin',
-                password: 'fA70 C2LT kG8l wAqh SZr6 QTfU',
+                password: 'wDIz cBe5 uYBS 3qZS YWok ttVy',
             })
             .then((res) => {
                 this.accountToken = res.data.token
