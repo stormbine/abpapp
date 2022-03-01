@@ -89,9 +89,10 @@ var Single = {
                 .get(this.$apiUrl + 'wp-json/abp-app/v1/get-post-by-slug/' + postName)
                 .then(response => {
                     this.postData = response.data[0]
+                    console.log(response.data[0].post_title)
 
                     if(typeof mixpanel != "undefined") {
-                        mixpanel.track( "Article Open", {"Title": response.data[0].title.rendered} );
+                        mixpanel.track( "Article Open", {"Title": response.data[0].post_title });
                     }
 
                     //get the comments for this post.
