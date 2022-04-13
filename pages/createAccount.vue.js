@@ -98,7 +98,7 @@ var CreateAccount = {
                     last_name: this.userDetails.lastName,
                     email: this.userDetails.email
                 }
-
+                
                 axios({
                     method: 'post',
                     url: this.$apiUrl + 'wp-json/wp/v2/users',
@@ -117,6 +117,25 @@ var CreateAccount = {
                     document.getElementById('caEmail').classList.add("invalid")
                     document.getElementById('caEmail').querySelector('.error-message').textContent = "This email already exists in our system."
                 });
+
+                if(this.userDetails.emailSignup)
+                {
+                    axios({
+                        method: 'post',
+                        url: this.$apiUrl + 'wp-json/abp-app/v1/abp_email_optin',
+                        data: JSON.stringify(toSave),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Authorization': 'Bearer ' + this.accountToken
+                        }
+                    })
+                    .then((res) => {
+                    })
+                    .catch((err) => {
+                        
+                    });
+                }
             }
         },
         checkRequired: function(fieldId) {
