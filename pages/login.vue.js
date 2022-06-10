@@ -99,6 +99,8 @@ var Login = {
                         this.$store.state.display_name = res.data.profile.user_display_name
                         this.$store.state.isLoggedIn = true
 
+                        this.$store.state.user_details = res.data.profile
+
                         //get the user favs.
                         axios
                             .get(this.$apiUrl + 'wp-json/abp-app/v1/get-user-favs/' + res.data.profile.id)
